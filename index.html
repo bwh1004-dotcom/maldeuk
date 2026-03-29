@@ -278,7 +278,7 @@ function doSetup(){
   const name=document.getElementById('inp-name').value.trim();
   const key=document.getElementById('inp-key').value.trim();
   if(!name){toast('아이 이름을 입력해주세요 😊');return;}
-  if(!key||!key.startsWith('sk-ant-')){toast('올바른 API 키를 입력해주세요');return;}
+  if(!key||!key.startsWith('sk-')){toast('올바른 API 키를 입력해주세요');return;}
   S.name=name;S.key=key;save();setName();show('s-home');
 }
 function save(){localStorage.setItem('maldeuk_v2',JSON.stringify({name:S.name,key:S.key}));}
