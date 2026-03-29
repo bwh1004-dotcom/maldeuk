@@ -311,7 +311,7 @@ function show(id) {
 
 function doSetup() {
   var name = document.getElementById('inp-name').value.trim() || '\uC544\uC774';
-  var key = document.getElementById('inp-key').value.trim();
+  var key = document.getElementById('inp-key').value.replace(/[^ -~]/g, '').trim();
   S.name = name; S.key = key;
   save(); setName(); show('s-home');
 }
