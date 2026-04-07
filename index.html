@@ -133,16 +133,8 @@ input.field::placeholder{color:rgba(120,110,88,.5)}
       <div class="card-label">👶 우리 아이 이름은?</div>
       <input class="field" id="inp-name" type="text" placeholder="예: 하은, 지우, 민준..." maxlength="6">
     </div>
-    <div class="card">
-      <div class="card-label">🔑 Claude API 키</div>
-      <input class="field" id="inp-key" type="password" placeholder="sk-ant-api03-...">
-      <div class="hint">💡 <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> 에서 발급</div>
-    </div>
-    <div class="card">
-      <div class="card-label">🎙️ ElevenLabs API 키 <span style="font-size:11px;color:var(--muted)">(선택 - 자연스러운 목소리)</span></div>
-      <input class="field" id="inp-elkey" type="password" placeholder="sk_... (없으면 비워두세요)">
-      <div class="hint">💡 <a href="https://elevenlabs.io/app/developers" target="_blank">elevenlabs.io</a> 에서 무료 발급 · 없으면 기본 TTS 사용</div>
-    </div>
+    <input type="hidden" id="inp-key" value="worker">
+    <input type="hidden" id="inp-elkey" value="">
     <button class="btn-main" onclick="doSetup()">🌟 시작하기!</button>
     <div class="footer-brand">UNODIYA · maldeuk</div>
   </div>
