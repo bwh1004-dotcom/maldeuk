@@ -425,7 +425,6 @@ function generate(){
     document.getElementById('msg-text').textContent=S.msg;
     document.getElementById('bubble').className='bubble '+char.cls;
     g('bubble',false);g('btn-speak',false);g('btn-regen',false);
-    setTimeout(function(){speakNow(S.msg);},500);
   })
   .catch(function(e){
     g('loading',true);
