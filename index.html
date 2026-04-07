@@ -486,22 +486,31 @@ function speakElevenLabs(text){
 
 function speakBrowser(text){
   window.speechSynthesis.cancel();
-  var u=new SpeechSynthesisUtterance(text);
+  var sentences=text.match(/[^.!?~\n]+[.!?~\n]*/g)||[text];
+  var idx=0;
   var m=MODES[S.mode];
-  u.lang='ko-KR';
-  u.pitch=Math.max(0.1,S.char.pitch+m.pa);
-  u.rate=Math.max(0.5,S.char.rate+m.ra);
-  u.volume=1;
   var vs=speechSynthesis.getVoices();
-  for(var i=0;i<vs.length;i++){if(vs[i].lang.startsWith('ko')){u.voice=vs[i];break;}}
-  u.onstart=function(){
-    S.speaking=true;
-    var b=document.getElementById('btn-speak');
-    b.textContent='⏹ 멈추기'; b.classList.add('on');
-    setMsgSp(0,'a-talk');
-  };
-  u.onend=u.onerror=function(){S.speaking=false;resetBtn();};
-  window.speechSynthesis.speak(u);
+  var koVoice=null;
+  for(var i=0;i<vs.length;i++){if(vs[i].lang.startsWith('ko')){koVoice=vs[i];break;}}
+  function speakNext(){
+    if(idx>=sentences.length){S.speaking=false;resetBtn();return;}
+    var u=new SpeechSynthesisUtterance(sentences[idx++]);
+    u.lang='ko-KR';
+    u.pitch=Math.max(0.1,S.char.pitch+m.pa);
+    u.rate=Math.max(0.5,S.char.rate+m.ra);
+    u.volume=1;
+    if(koVoice) u.voice=koVoice;
+    if(idx===1){
+      S.speaking=true;
+      var b=document.getElementById('btn-speak');
+      b.textContent='⏹ 멈추기';b.classList.add('on');
+      setMsgSp(0,'a-talk');
+    }
+    u.onend=speakNext;
+    u.onerror=function(){S.speaking=false;resetBtn();};
+    window.speechSynthesis.speak(u);
+  }
+  speakNext();
 }
 
 function stopSpeak(){
