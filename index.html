@@ -528,10 +528,6 @@ function goHome(){
 function openSettings(){
   var n=prompt('아이 이름 변경:',S.name);
   if(n!==null&&n.trim()) S.name=n.trim();
-  var k=prompt('Claude API 키 변경 (변경 없으면 빈칸):','');
-  if(k&&k.trim()) S.key=k.replace(/[^ -~]/g,'').trim();
-  var ek=prompt('ElevenLabs API 키 변경 (변경 없으면 빈칸):','');
-  if(ek!==null) S.elkey=ek.replace(/[^ -~]/g,'').trim();
   save();setName();updateTtsBadge();toast('저장되었어요! ✅');
 }
 
