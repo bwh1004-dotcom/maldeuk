@@ -133,8 +133,6 @@ input.field::placeholder{color:rgba(120,110,88,.5)}
       <div class="card-label">👶 우리 아이 이름은?</div>
       <input class="field" id="inp-name" type="text" placeholder="예: 하은, 지우, 민준..." maxlength="6">
     </div>
-    <input type="hidden" id="inp-key" value="worker">
-    <input type="hidden" id="inp-elkey" value="">
     <button class="btn-main" onclick="doSetup()">🌟 시작하기!</button>
     <div class="footer-brand">UNODIYA · maldeuk</div>
   </div>
@@ -235,14 +233,14 @@ var MODES = {
   scary: {txt:'아주 무섭고 엄하게! 화를 내며 강하게 경고해. 바로 행동하지 않으면 어떻게 될지 경고하듯 말해.', pa:-0.3, ra:-0.1, elStability:0.3, elStyle:0.8}
 };
 
-var S = {name:'',key:'',elkey:'',char:null,cat:null,speaking:false,msg:'',mode:'kind',audio:null};
+var S = {name:'',char:null,cat:null,speaking:false,msg:'',mode:'kind',audio:null};
 
 (function init(){
   makeStars(); buildChars(); buildCats(); loadImages();
   try {
     var d = JSON.parse(localStorage.getItem('maldeuk_v4')||'{}');
-    if(d.name&&d.key){
-      S.name=d.name; S.key=d.key; S.elkey=d.elkey||'';
+    if(d.name){
+      S.name=d.name;
       setName(); updateTtsBadge(); show('s-home'); return;
     }
   } catch(e){}
@@ -341,14 +339,12 @@ function show(id){
 
 function doSetup(){
   var name=document.getElementById('inp-name').value.trim()||'아이';
-  var key=document.getElementById('inp-key').value.replace(/[^ -~]/g,'').trim();
-  var elkey=document.getElementById('inp-elkey').value.replace(/[^ -~]/g,'').trim();
-  S.name=name; S.key=key; S.elkey=elkey;
+  S.name=name;
   save(); setName(); updateTtsBadge(); show('s-home');
 }
 
 function save(){
-  try{localStorage.setItem('maldeuk_v4',JSON.stringify({name:S.name,key:S.key,elkey:S.elkey}));}catch(e){}
+  try{localStorage.setItem('maldeuk_v4',JSON.stringify({name:S.name}));}catch(e){}
 }
 
 function setName(){ document.getElementById('home-name').textContent=S.name; }
@@ -394,7 +390,7 @@ function regen(){stopSpeak();generate();}
 function setMsgSp(pose,anim){ document.getElementById('msg-sp').innerHTML=spEl(S.char,pose,anim,true); }
 
 function generate(){
-  var char=S.char,cat=S.cat,name=S.name,key=S.key;
+  var char=S.char,cat=S.cat,name=S.name;
   setMsgSp(2,'a-bounce');
   var who=document.getElementById('msg-who');
   who.textContent=char.name+'이(가) 말해줄게요!';
