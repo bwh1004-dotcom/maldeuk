@@ -408,7 +408,7 @@ function setMsgSp(pose,anim){
     var an=anim==='a-float'?'afloat 2.8s ease-in-out infinite':
            anim==='a-talk'?'atalk .42s ease-in-out infinite':
            anim==='a-bounce'?'abounce .6s ease-in-out infinite':'';
-    el.innerHTML='<img src="'+url+'" style="width:150px;height:auto;display:inline-block;'+(an?'animation:'+an+';':'')+'filter:drop-shadow(0 4px 22px rgba(240,165,0,.4))">';
+    el.innerHTML='<img src="'+url+'" style="width:180px;height:auto;max-width:90%;display:inline-block;border-radius:0;object-fit:contain;'+(an?'animation:'+an+';':'')+'filter:drop-shadow(0 4px 22px rgba(240,165,0,.4))">';
   } else {
     el.innerHTML=spEl(S.char,pose,anim,true);
   }
