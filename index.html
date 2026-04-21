@@ -68,6 +68,8 @@ input.field::placeholder{color:rgba(120,110,88,.5)}
 .char-card.oj.on{border-color:var(--oj);background:rgba(255,126,179,.09);box-shadow:0 0 22px rgba(255,126,179,.28)}
 .char-card.un.on{border-color:var(--un);background:rgba(94,184,255,.09);box-shadow:0 0 22px rgba(94,184,255,.28)}
 .char-card.pr.on{border-color:var(--pr);background:rgba(126,216,126,.09);box-shadow:0 0 22px rgba(126,216,126,.28)}
+.char-card.coming-soon{opacity:.5;pointer-events:none;cursor:not-allowed}
+.coming-soon-label{font-family:'Black Han Sans',sans-serif;font-size:10px;color:var(--muted);letter-spacing:.8px;margin-top:2px}
 .char-name{font-family:'Black Han Sans',sans-serif;font-size:14px;margin-top:6px}
 .char-name.oj{color:var(--oj)}.char-name.un{color:var(--un)}.char-name.pr{color:var(--pr)}
 .char-region{font-size:10px;color:var(--muted);margin-top:2px}
@@ -203,6 +205,7 @@ var CHARS = [
    preview:'우노짱이 왜 이라노! 얼른 해뿌라!',
    persona:'너는 부산 출신의 우노짱이야. 경상도 말투: "~데이","~해뿌라","이라노","~아이가" 사용. 자신을 "우노짱이"로 지칭해.'},
   {id:'pr',cls:'pr',name:'푸른이',region:'광주 출신',mood:'정겹고 유머 넘치는\n광주 친구 스타일',img:null,em:'🌿',pitch:1.04,rate:.88,
+   comingSoon:true,
    preview:'푸른이가 말하는디 안 들으믄 쓰겄어? 어서 혀봐~',
    persona:'너는 광주 출신의 푸른이야. 광주 말투: "~혀","~쓰겄어","~하는디","~잖여" 사용. 자신을 "푸른이"로 지칭해.'}
 ];
@@ -310,11 +313,20 @@ function buildChars(){
   var h='';
   for(var i=0;i<CHARS.length;i++){
     var c=CHARS[i];
-    h+='<div class="char-card '+c.cls+'" id="cc-'+c.id+'" onclick="pickChar(\''+c.id+'\')">'
-      +spEl(c,0,'',false)
-      +'<div class="char-name '+c.cls+'">'+c.name+'</div>'
-      +'<div class="char-region">'+c.region+'</div>'
-      +'<div class="char-mood">'+c.mood+'</div></div>';
+    if(c.comingSoon){
+      h+='<div class="char-card '+c.cls+' coming-soon" id="cc-'+c.id+'" aria-disabled="true">'
+        +spEl(c,0,'',false)
+        +'<div class="coming-soon-label">Coming Soon</div>'
+        +'<div class="char-name '+c.cls+'">'+c.name+'</div>'
+        +'<div class="char-region">'+c.region+'</div>'
+        +'<div class="char-mood">준비 중이에요</div></div>';
+    } else {
+      h+='<div class="char-card '+c.cls+'" id="cc-'+c.id+'" onclick="pickChar(\''+c.id+'\')">'
+        +spEl(c,0,'',false)
+        +'<div class="char-name '+c.cls+'">'+c.name+'</div>'
+        +'<div class="char-region">'+c.region+'</div>'
+        +'<div class="char-mood">'+c.mood+'</div></div>';
+    }
   }
   document.getElementById('char-grid').innerHTML=h;
 }
