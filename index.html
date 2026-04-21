@@ -186,8 +186,9 @@ input.field::placeholder{color:rgba(120,110,88,.5)}
 
 </div>
 <script>
-var OJ_URL = 'https://raw.githubusercontent.com/bwh1004-dotcom/maldeuk/main/oj.png';
-var UN_URL = 'https://raw.githubusercontent.com/bwh1004-dotcom/maldeuk/main/un.png';
+var IMG_BASE = 'https://raw.githubusercontent.com/bwh1004-dotcom/maldeuk/main/';
+var OJ_URL = IMG_BASE + 'oj.png';
+var UN_URL = IMG_BASE + 'un.png';
 
 // ElevenLabs 한국어 목소리 ID
 // 오짱: Aria (따뜻한 여성), 우노짱: Charlie (남성), 푸른이: Aria
@@ -400,7 +401,18 @@ function pickCat(id){
 
 function regen(){stopSpeak();generate();}
 
-function setMsgSp(pose,anim){ document.getElementById('msg-sp').innerHTML=spEl(S.char,pose,anim,true); }
+function setMsgSp(pose,anim){
+  var el=document.getElementById('msg-sp');
+  if(S.char&&S.cat&&S.char.id!=='pr'){
+    var url=IMG_BASE+S.char.id+'_'+S.cat.id+'.png';
+    var an=anim==='a-float'?'afloat 2.8s ease-in-out infinite':
+           anim==='a-talk'?'atalk .42s ease-in-out infinite':
+           anim==='a-bounce'?'abounce .6s ease-in-out infinite':'';
+    el.innerHTML='<img src="'+url+'" style="width:150px;height:auto;display:inline-block;'+(an?'animation:'+an+';':'')+'filter:drop-shadow(0 4px 22px rgba(240,165,0,.4))">';
+  } else {
+    el.innerHTML=spEl(S.char,pose,anim,true);
+  }
+}
 
 function generate(){
   var char=S.char,cat=S.cat,name=S.name;
