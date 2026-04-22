@@ -86,7 +86,7 @@ input.field::placeholder{color:rgba(120,110,88,.5)}
 .cat-name{font-family:'Black Han Sans',sans-serif;font-size:14px;color:var(--text)}
 .cat-sub{font-size:11px;color:var(--muted);margin-top:2px}
 .msg-wrap{text-align:center;padding:8px 0}
-.msg-sp{display:inline-block;filter:drop-shadow(0 4px 22px rgba(240,165,0,.45));margin-bottom:4px}
+.msg-sp{display:inline-block;filter:drop-shadow(0 4px 22px rgba(240,165,0,.45));margin-bottom:4px;min-height:190px;padding-bottom:10px}
 .msg-who{font-family:'Black Han Sans',sans-serif;font-size:14px;margin-bottom:10px}
 .msg-who.oj{color:var(--oj)}.msg-who.un{color:var(--un)}.msg-who.pr{color:var(--pr)}
 .loading{display:flex;justify-content:center;gap:7px;padding:20px}
@@ -408,7 +408,7 @@ function setMsgSp(pose,anim){
     var an=anim==='a-float'?'afloat 2.8s ease-in-out infinite':
            anim==='a-talk'?'atalk .42s ease-in-out infinite':
            anim==='a-bounce'?'abounce .6s ease-in-out infinite':'';
-    el.innerHTML='<img src="'+url+'" style="width:180px;height:auto;max-width:90%;display:inline-block;border-radius:0;object-fit:contain;'+(an?'animation:'+an+';':'')+'filter:drop-shadow(0 4px 22px rgba(240,165,0,.4))">';
+    el.innerHTML='<img src="'+url+'" style="width:180px;height:auto;max-height:170px;max-width:90%;display:inline-block;border-radius:0;object-fit:contain;padding-bottom:10px;'+(an?'animation:'+an+';':'')+'filter:drop-shadow(0 4px 22px rgba(240,165,0,.4))">';
   } else {
     el.innerHTML=spEl(S.char,pose,anim,true);
   }
