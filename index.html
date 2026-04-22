@@ -288,8 +288,8 @@ function updateLogo(){
   var lr=document.getElementById('logo-row');
   if(!lr) return;
   var h='';
-  h+=CHARS[0].img?'<div class="sp sp-oj p0 a-float" style="filter:drop-shadow(0 4px 14px rgba(255,126,179,.5))"></div>':'<span style="font-size:64px;animation:afloat 2.6s ease-in-out infinite;display:block">🌸</span>';
-  h+=CHARS[1].img?'<div class="sp sp-un p3 a-float" style="filter:drop-shadow(0 4px 14px rgba(94,184,255,.5))"></div>':'<span style="font-size:64px;animation:afloat 3.1s ease-in-out infinite;display:block">🌊</span>';
+  h+=CHARS[0].img?'<img src="'+CHARS[0].img+'" class="a-float" style="width:60px;height:auto;object-fit:contain;filter:drop-shadow(0 4px 14px rgba(255,126,179,.5))">':'<span style="font-size:64px;animation:afloat 2.6s ease-in-out infinite;display:block">🌸</span>';
+  h+=CHARS[1].img?'<img src="'+CHARS[1].img+'" class="a-float" style="width:60px;height:auto;object-fit:contain;filter:drop-shadow(0 4px 14px rgba(94,184,255,.5))">':'<span style="font-size:64px;animation:afloat 3.1s ease-in-out infinite;display:block">🌊</span>';
   lr.innerHTML=h;
 }
 
