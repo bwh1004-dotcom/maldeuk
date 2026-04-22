@@ -63,7 +63,7 @@ input.field::placeholder{color:rgba(120,110,88,.5)}
 .mode-btn.an{border-color:var(--gold);background:rgba(240,165,0,.12);color:var(--gold)}
 .mode-btn.as{border-color:#e63946;background:rgba(230,57,70,.15);color:#e63946}
 .char-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.char-card{background:var(--card);border:2px solid rgba(240,165,0,.1);border-radius:18px;padding:14px 8px 12px;text-align:center;cursor:pointer;transition:all .2s}
+.char-card{background:var(--card);border:2px solid rgba(240,165,0,.1);border-radius:18px;padding:14px 8px 14px;text-align:center;cursor:pointer;transition:all .2s;min-height:220px}
 .char-card:active{transform:scale(.95)}
 .char-card.oj.on{border-color:var(--oj);background:rgba(255,126,179,.09);box-shadow:0 0 22px rgba(255,126,179,.28)}
 .char-card.un.on{border-color:var(--un);background:rgba(94,184,255,.09);box-shadow:0 0 22px rgba(94,184,255,.28)}
@@ -303,7 +303,7 @@ function updateTtsBadge(){
 function spEl(c,pose,anim,big){
   if(c.img){
     if(big) return '<div class="sp sp-'+c.id+' slp'+pose+' '+(anim||'')+'" style="filter:drop-shadow(0 4px 22px rgba(240,165,0,.4))"></div>';
-    return '<div class="sp-sm spsm-'+c.id+' ssmp'+pose+'"></div>';
+    return '<img src="'+c.img+'" style="width:100%;height:auto;max-width:120px;object-fit:contain;display:block;margin:0 auto 6px">';
   }
   var fs=big?'90px':'52px';
   var an=anim?'animation:'+(anim==='a-float'?'afloat 2.8s ease-in-out infinite':anim==='a-talk'?'atalk .42s ease-in-out infinite':'abounce .6s ease-in-out infinite')+';':'';
