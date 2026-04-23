@@ -62,7 +62,7 @@ input.field::placeholder{color:rgba(120,110,88,.5)}
 .mode-btn.ak{border-color:#4caf87;background:rgba(76,175,135,.12);color:#4caf87}
 .mode-btn.an{border-color:var(--gold);background:rgba(240,165,0,.12);color:var(--gold)}
 .mode-btn.as{border-color:#e63946;background:rgba(230,57,70,.15);color:#e63946}
-.char-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.char-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
 .char-card{background:var(--card);border:2px solid rgba(240,165,0,.1);border-radius:18px;padding:14px 8px 14px;text-align:center;cursor:pointer;transition:all .2s;min-height:220px}
 .char-card:active{transform:scale(.95)}
 .char-card.oj.on{border-color:var(--oj);background:rgba(255,126,179,.09);box-shadow:0 0 22px rgba(255,126,179,.28)}
@@ -322,7 +322,7 @@ function buildChars(){
   for(var i=0;i<CHARS.length;i++){
     var c=CHARS[i];
     if(c.comingSoon){
-      h+='<div class="char-card '+c.cls+' coming-soon" id="cc-'+c.id+'" aria-disabled="true">'
+      h+='<div class="char-card '+c.cls+' coming-soon" id="cc-'+c.id+'" aria-disabled="true" style="display:none">'
         +spEl(c,0,'',false)
         +'<div class="coming-soon-label">Coming Soon</div>'
         +'<div class="char-name '+c.cls+'">'+c.name+'</div>'
